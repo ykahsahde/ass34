@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #cfc9c9;
+    }
+    .student-card{
+        border: 1px solid black;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 20px;
+        background-color: #847e7e;
+        color: aliceblue;
+        font-size: 30px;
+    }
+    .add-students-container{
+        background-color: tomato;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    h1{
+        text-align: center;
+        font-size: 50px;
+        color: blueviolet;
+    }
+    #students-name{
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 20px;
+        text-align: center;
+    }
+    .btn{
+        font-size: 20px;
+        padding: 10px 30px;
+        border-radius: 50px;
+        background-color: rgba(150, 11, 237, 0.815);
+        color: azure;
+        border: none;
+    }
+    .btnn{
+        margin: 0px 10px;
+    }
+</style>
+<body>
+    <h1>Students Book📖📖</h1>
+    <div class="add-students-container">
+      <input type="text"
+           id="students-name"
+           placeholder="Enter student name">
+      <button type="button" class="btn btnn" onclick="addstudent()" >Add </button>
+      <button type="button" class="btn"  onclick="removestudent()" >Remove</button>
+
+    </div>
+
+    <div id="students-container">
+       
+    </div>
+    <script>
+         function getrandomemoji(){
+            const emojis=[
+                '🐵','🐶','🐺','🐱',
+                '🦁','🐯','🦊','🦝',
+                '🐮','🐷','🐭','🐹',
+                '🐰','🐻','🐼','🐨',
+                '🦉','🐧'
+            ]
+            const min=0;
+            const max=emojis.length-1;
+            const randomIndex=Math.floor(Math.random()*(max-min+1))+min;
+            return emojis[randomIndex]
+        }
+       const students = [
+        
+        ]
+        function loadstudents(){
+            const studentscontainer=document.getElementById("students-container");
+            studentscontainer.innerHTML="";
+        for(let i=0;i<students.length;i++){
+            studentscontainer.innerHTML+=`<div class="student-card">${i+1}:${getrandomemoji()}${students[i]}<br></div>`
+        }
+
+        }
+        const studentsname=document.getElementById("students-name");
+        function addstudent(){
+            students.push(studentsname.value);
+            studentsname.value="";
+            loadstudents();
+            
+        }
+        function removestudent(){
+            const studentindex = students.indexOf(studentsname.value);
+            students.splice(studentindex,1);
+            studentsname.value="";
+            loadstudents();
+
+        }
+    </script>
+</body>
+</html>
